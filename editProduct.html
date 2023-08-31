@@ -73,6 +73,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      cursor:pointer;
     }
 
     .form-control {
@@ -351,6 +352,19 @@
       background-color: rgb(10, 173, 10);
       border-color: rgb(10, 173, 10);
     }
+    /* 0831  login */
+    .login-block{
+      width: 192px;
+      height: 227px;
+      border-radius: 10px;
+      border: 1px solid darkgray;
+      background-color: white;
+      right:10px;
+    }
+    .login-block div:nth-of-type(2) div:hover{
+      background-color: rgb(240, 243, 242) ;
+    }
+
   </style>
 
 
@@ -363,8 +377,8 @@
 
   <div class="container-fluid d-flex h-100 w-100 p-0 border-end position-relative">
     <!-- 縮小時彈出側欄 -->
-    <div class="left-menu appear l-height px-4  position-absolute top-0 ">
-      <div class="logo d-flex align-items-center"><svg width="160" height="31" viewBox="0 0 160 31" fill="none"
+    <div class="left-menu appear l-height pe-4  position-absolute top-0 shadow ">
+      <div class="left-menu logo d-flex ps-4 align-items-center"><svg width="160" height="31" viewBox="0 0 160 31" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
             d="M8.12346 24.8618C9.5969 24.8618 10.7914 23.6674 10.7914 22.194C10.7914 20.7205 9.5969 19.526 8.12346 19.526C6.65002 19.526 5.45557 20.7205 5.45557 22.194C5.45557 23.6674 6.65002 24.8618 8.12346 24.8618Z"
@@ -576,8 +590,8 @@
     </div>
 
     <!-- 左邊欄位 -->
-    <div class="left-menu l-height px-4 d-none d-xl-block">
-      <div class="logo d-flex align-items-center"><svg width="160" height="31" viewBox="0 0 160 31" fill="none"
+    <div class="left-menu l-height pe-4 d-none d-xl-block">
+      <div class="left-menu ps-4 logo d-flex align-items-center"><svg width="160" height="31" viewBox="0 0 160 31" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
             d="M8.12346 24.8618C9.5969 24.8618 10.7914 23.6674 10.7914 22.194C10.7914 20.7205 9.5969 19.526 8.12346 19.526C6.65002 19.526 5.45557 20.7205 5.45557 22.194C5.45557 23.6674 6.65002 24.8618 8.12346 24.8618Z"
@@ -824,7 +838,21 @@
         <!-- 導航欄右側  -->
         <div class="nav-right col-6 h-75 p-0  d-flex justify-content-end align-items-center ">
           <div class="alarm "><i class="fa-regular fa-bell fw-light"></i></div>
-          <div class="login ms-4"><img class="login" src="./photo/login.jpg"></div>
+          <div class="login ms-4 position-relative"><img class="login" src="./photo/login.jpg">
+            <!-- 彈出的登入登出方塊 -->
+            <!-- 0831 login -->
+            <div class="login-block position-absolute appear">
+              <div class=" p-3 border-bottom">
+                FreshCart Admin<br><span  class="text-black-50"> admindemo@email.com</span>
+               </div>
+              <div class=" px-3 py-2 border-bottom">
+                <div  class="text-black-50 rounded-2">Home</div>
+                <div  class="text-black-50 rounded-2">Profile</div>
+                <div  class="text-black-50 rounded-2">Settings</div>
+              </div>
+              <div class=" p-3 text-success">Log Out</div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -930,14 +958,19 @@
   <script>
     // 縮小時左邊侧欄出現
     {
-      let appear = document.querySelector('.appear');
+        let appear = document.querySelectorAll('.appear');
       let faIndent = document.querySelector('.fa-indent');
+      let login = document.querySelector('.login.ms-4.position-relative');
       console.log(appear);
 
       faIndent.addEventListener('click', () => {
-        appear.classList.toggle('d-block');
+        appear[0].classList.toggle('d-block');
       })
-    }
+      
+      login.addEventListener('click', () => {
+        appear[1].classList.toggle('d-block');
+      })
+      }
 
     // 購物清單上點選第一行的checkbox後面的都會被勾選，或取消勾選
     {
